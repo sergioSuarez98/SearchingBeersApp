@@ -6,3 +6,6 @@
 //
 
 import Foundation
+struct BeerRequestModel: Codable{
+    let text: String
+}

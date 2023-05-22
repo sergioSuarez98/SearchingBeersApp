@@ -11,7 +11,7 @@ import SwiftUI
 struct BeerSearchingAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            BeerCoordinator.buildView()
         }
     }
 }
