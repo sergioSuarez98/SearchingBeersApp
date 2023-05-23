@@ -22,29 +22,26 @@ struct OutlinedTextField: View {
         VStack(alignment: .leading, spacing: 0){
             ZStack(alignment: .leading){
                 Text(placeholder)
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(text.wrappedValue.isEmpty ? Color.gray : .blue)
                     .font(.system(size: 14,weight: .regular,design: .default))
                     .padding(.horizontal,2)
-                    .background(Rectangle().fill(Color.white))
                     .padding(.leading,12)
-                    .offset(y: text.wrappedValue.isEmpty ? 0 : -32)
+                    .offset(y: text.wrappedValue.isEmpty ? 0 : -39)
                     .scaleEffect(text.wrappedValue.isEmpty ? 1 : 0.7,anchor: .leading)
                     .zIndex(text.wrappedValue.isEmpty ? 0 : 1)
                     .animation(.easeInOut, value: text.wrappedValue.isEmpty)
                 
                 HStack {
                     TextField("", text: text)
+                        .onChange(of: text.wrappedValue) { newText in
+                            iconTapped()
+                         }
                         .autocapitalization(.none)
                         .keyboardType(keyboardType)
                         .zIndex(text.wrappedValue.isEmpty ? 1 : 0)
-                    Button(action: { iconTapped()}) {
-                        Image(systemName: icon)
-                            .resizable()
-                            .foregroundColor(iconColor)
-                            .frame(width: 18,height: 18)
-                            .padding(.trailing, 16)
-                    }
-                    /*if !icon.isEmpty {
+                        
+
+                    if !icon.isEmpty {
                         if text.wrappedValue.isEmpty {
                             Button(action: { iconTapped()}) {
                                 Image(systemName: icon)
@@ -54,7 +51,7 @@ struct OutlinedTextField: View {
                                     .padding(.trailing, 16)
                             }
                         }
-                    }*/
+                    }
                     if !error.wrappedValue.isEmpty {
                         Image(systemName: "info.circle")
                             .resizable()

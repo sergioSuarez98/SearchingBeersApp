@@ -1,9 +1,7 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let beeerServerModel = try? JSONDecoder().decode(BeeerServerModel.self, from: jsonData)
 
 import Foundation
+
+///El server model debería recibir todos los datos que se reciben de backend. Había una serie de atributos que dependiendo de la cerveza tomaba un tipo de valor u otro, así que por falta de tiempo decidí quedarme solo con los atributos que voy a utilizar y que no dan problemas. Para el ejemplo sirve
 
 
 // MARK: - BeeerServerModelElement
@@ -12,7 +10,7 @@ struct BeerServerModel: Codable {
     let name, description: String?
     let image_url: String?
     
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name
         case description
@@ -55,10 +53,9 @@ struct Fermentation: Codable {
 // MARK: - MashTemp
 struct MashTemp: Codable {
     let temp: BoilVolume?
-
+    
 }
 
 typealias BeeerServerModel = [BeerServerModel]
 
-// MARK: - Encode/decode helpers
 
